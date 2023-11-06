@@ -16,3 +16,9 @@
 |  Sierra           | Nvidia        |	IBM Power SystemS922LC   |
 |  Perlmutter          | Nvidia        |	HPE Cray EX235a     |
 |  Selene           | Nvidia        |	Nvidia |
+
+#### 3. One main advantage of GPU is its power efficiency, which can be quantified by Performance/Power, e.g., throughput as in FLOPS per watt power consumption. Calculate the power efficiency for the top 10 supercomputers. (Hint: use the table in the first lecture)
+
+## Exercise 2 - Query Nvidia GPU Compute Capability
+
+#### 1. The screenshot of the output from running deviceQuery test in /1_Utilities.
