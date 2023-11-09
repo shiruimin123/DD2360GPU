@@ -22,3 +22,7 @@
 ## Exercise 2 - Query Nvidia GPU Compute Capability
 
 #### 1. The screenshot of the output from running deviceQuery test in /1_Utilities.
+
+## Exercise 3 - Rodinia CUDA benchmarks and Comparison with CPU
+
+#### 1. Compile both OMP and CUDA versions of your selected benchmarks. Do you need to make any changes in Makefile?
