@@ -26,3 +26,12 @@
 ## Exercise 3 - Rodinia CUDA benchmarks and Comparison with CPU
 
 #### 1. Compile both OMP and CUDA versions of your selected benchmarks. Do you need to make any changes in Makefile?
+#### 2. Ensure the same input problem is used for OMP and CUDA versions. Report and compare their execution time. 
+
+#### 3. Do you observe expected speedup on GPU compared to CPU? Why or Why not?
+
+## Exercise 4 - Run a HelloWorld on AMD GPU
+
+#### 1. How do you launch the code on GPU on Dardel supercomputer?
+
+#### 2. Include a screenshot of your output from Dardel
