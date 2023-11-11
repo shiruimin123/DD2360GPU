@@ -46,7 +46,7 @@ Memory Bandwidth (GB/s) = Memory Clock Rate (GHz) x Memory Bus Width (bits) / 8
 
 In the provided output, the memory clock rate is 5.001 MHz, and the memory bus width is 256 bits. The memory bandwidth should be:
 
-Memory Bandwidth (GB/s) = 5.001 GHz x 256 bits / 8 = 160.032 GB/s
+Memory Bandwidth (GB/s) = 5.001 GHz x 256 bits / 8 x 2 = 320.064 GB/s
 
 The calculated memory bandwidth is approximately 160.032 GB/s based on the output of deviceQuery.
 
