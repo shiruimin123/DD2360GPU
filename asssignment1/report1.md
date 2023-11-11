@@ -29,7 +29,7 @@
 #### 1. Compile both OMP and CUDA versions of your selected benchmarks. Do you need to make any changes in Makefile?
 #### 2. Ensure the same input problem is used for OMP and CUDA versions. Report and compare their execution time. 
 particlefilter[CUDA]
-![image](https://github.com/shiruimin123/DD2360GPU/blob/main/asssignment1/images/particlefilter_cuda.jpgZ)
+![image](https://github.com/shiruimin123/DD2360GPU/blob/main/asssignment1/images/particlefilter_cuda.jpg)
 particlefilter[OpenMP]
 ![image](https://github.com/shiruimin123/DD2360GPU/blob/main/asssignment1/images/particlefilter_openmp.jpg)
 lavaMD(CUDA)
