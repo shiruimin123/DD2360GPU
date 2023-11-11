@@ -27,6 +27,9 @@
 ## Exercise 3 - Rodinia CUDA benchmarks and Comparison with CPU
 
 #### 1. Compile both OMP and CUDA versions of your selected benchmarks. Do you need to make any changes in Makefile?
+The modifications we need to make to the makefile include paths and computing capabilities.
+
+From exercise2 we found that the calculate capability of Google Colab is "7.5". We specify the target architecture in the Makefile as "-arch sm_75" to support the code running on GPUs with sm_75 caculating capabilities.
 
 #### 2. Ensure the same input problem is used for OMP and CUDA versions. Report and compare their execution time. 
 particlefilter[CUDA]
