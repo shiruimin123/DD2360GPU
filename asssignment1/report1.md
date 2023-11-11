@@ -30,6 +30,10 @@ The compute capability of the GPU device, as shown in the output from deviceQuer
 #### 3. The screenshot of the output from running bandwidthTest test in /1_Utilities.
 ![image](https://github.com/shiruimin123/DD2360GPU/blob/main/asssignment1/images/bandwidthtest.jpg)
 
+#### 4. How will you calculate the GPU memory bandwidth (in GB/s) using the output from deviceQuery? (Hint: memory bandwidth is typically determined by clock rate and bus width, and check what double date rate (DDR) may impact the bandwidth). Are they consistent with your results from bandwidthTest?
+
+
+
 ## Exercise 3 - Rodinia CUDA benchmarks and Comparison with CPU
 
 #### 1. Compile both OMP and CUDA versions of your selected benchmarks. Do you need to make any changes in Makefile?
