@@ -25,7 +25,7 @@
 ![image](https://github.com/shiruimin123/DD2360GPU/blob/main/asssignment1/images/exercise2.jpg)
 
 #### 2. What is the Compute Capability of your GPU device?
-7.5
+The compute capability of the GPU device, as shown in the output from deviceQuery, is "7.5."
 
 ## Exercise 3 - Rodinia CUDA benchmarks and Comparison with CPU
 
