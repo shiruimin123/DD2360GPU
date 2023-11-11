@@ -3,6 +3,14 @@
 ## Exercise 1 - Reflection on GPU-accelerated Computing
 
 #### 1. List the main differences between GPUs and CPUs in terms of architecture.
+##### 1. Parallel:
+GPU is highly parallel processors which can handle multiple tasks simultaneously. GPU has large number of cores, each capable of executing its own set of instructions independently.
+
+CPU is optimized for single-threaded performance. CPU has higher clock speeds and more complex cores.
+##### 2. Number of Cores:
+GPU has larger number of simple cores. This allows them to process many simple tasks simultaneously, making them suitable for parallelizable tasks.
+
+CPUs has fewer but more powerful cores that are optimized for handling complex tasks and executing a variety of instructions.
 #### 2.Check the latest Top500 list that ranks the top 500 most powerful supercomputers in the world. In the top 10, how many supercomputers use GPUs? Report the name of the supercomputers and their GPU vendor (Nvidia, AMD, ...) and model. 
 
 8 supercomputers ues GPUs in top10.
