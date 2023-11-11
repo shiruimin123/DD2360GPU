@@ -48,7 +48,7 @@ In the provided output, the memory clock rate is 5.001 MHz, and the memory bus w
 
 Memory Bandwidth (GB/s) = 5.001 GHz x 256 bits / 8 x 2 = 320.064 GB/s
 
-The calculated memory bandwidth is approximately 160.032 GB/s based on the output of deviceQuery.
+The calculated memory bandwidth is approximately 320.064 GB/s based on the output of deviceQuery.
 
 
 ## Exercise 3 - Rodinia CUDA benchmarks and Comparison with CPU
