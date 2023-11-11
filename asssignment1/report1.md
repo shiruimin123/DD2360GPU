@@ -22,6 +22,7 @@
 ## Exercise 2 - Query Nvidia GPU Compute Capability
 
 #### 1. The screenshot of the output from running deviceQuery test in /1_Utilities.
+![image](https://github.com/shiruimin123/DD2360GPU/blob/main/asssignment1/images/exercise2.jpg)
 
 ## Exercise 3 - Rodinia CUDA benchmarks and Comparison with CPU
 
