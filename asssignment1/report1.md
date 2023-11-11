@@ -84,7 +84,7 @@ Firstly, we compile the HelloWorld.cpp using ```make```
 
 Then, allocate for a time slot ```salloc -A edu23.dd2360 -p gpu -N 1 -t 00:10:00```
 
-Then, run the Helloworld file using ```./Helloworld```
+Then, run the Helloworld file using ```srun -n 1 ./Helloworld```
 #### 2. Include a screenshot of your output from Dardel
 
 ![figures](https://github.com/shiruimin123/DD2360GPU/blob/main/asssignment1/figures/helloworld.png)
