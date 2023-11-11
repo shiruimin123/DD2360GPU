@@ -31,7 +31,15 @@ The compute capability of the GPU device, as shown in the output from deviceQuer
 ![image](https://github.com/shiruimin123/DD2360GPU/blob/main/asssignment1/images/bandwidthtest.jpg)
 
 #### 4. How will you calculate the GPU memory bandwidth (in GB/s) using the output from deviceQuery? (Hint: memory bandwidth is typically determined by clock rate and bus width, and check what double date rate (DDR) may impact the bandwidth). Are they consistent with your results from bandwidthTest?
+To calculate the GPU memory bandwidth (in GB/s) using the output from deviceQuery, the memory bandwidth can be calculated using the following formula:
 
+Memory Bandwidth (GB/s) = Memory Clock Rate (GHz) x Memory Bus Width (bits) / 8
+
+In the provided output, the memory clock rate is 5.001 MHz, and the memory bus width is 256 bits. The memory bandwidth should be:
+
+Memory Bandwidth (GB/s) = 5.001 GHz x 256 bits / 8 = 160.032 GB/s
+
+The calculated memory bandwidth is approximately 160.032 GB/s based on the output of deviceQuery.
 
 
 ## Exercise 3 - Rodinia CUDA benchmarks and Comparison with CPU
