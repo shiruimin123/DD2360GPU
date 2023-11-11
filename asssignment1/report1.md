@@ -58,6 +58,7 @@ lavaMD(OpenMP)
 
 ![image](https://github.com/shiruimin123/DD2360GPU/blob/main/asssignment1/images/lavaMD_openmp.jpg)
 #### 3. Do you observe expected speedup on GPU compared to CPU? Why or Why not?
+In the benchmark we used, whether particlefilter or lavaMD, we can observe obvious acceleration.
 
 ## Exercise 4 - Run a HelloWorld on AMD GPU
 
