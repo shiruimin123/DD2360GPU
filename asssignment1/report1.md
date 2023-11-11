@@ -27,6 +27,9 @@
 #### 2. What is the Compute Capability of your GPU device?
 The compute capability of the GPU device, as shown in the output from deviceQuery, is "7.5."
 
+#### 3. The screenshot of the output from running bandwidthTest test in /1_Utilities.
+![image](https://github.com/shiruimin123/DD2360GPU/blob/main/asssignment1/images/bandwidthtest.jpg)
+
 ## Exercise 3 - Rodinia CUDA benchmarks and Comparison with CPU
 
 #### 1. Compile both OMP and CUDA versions of your selected benchmarks. Do you need to make any changes in Makefile?
