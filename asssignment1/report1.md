@@ -80,5 +80,8 @@ In the benchmark we used, whether particlefilter or lavaMD, we can observe obvio
 ## Exercise 4 - Run a HelloWorld on AMD GPU
 
 #### 1. How do you launch the code on GPU on Dardel supercomputer?
-
+Firstly, we compile the HelloWorld.cpp using ```make```
+Then, allocate for a time slot ```salloc -A edu23.dd2360 -p gpu -N 1 -t 00:10:00```
+Then, run the Helloworld file using ```./Helloworld```
 #### 2. Include a screenshot of your output from Dardel
+!(figures/helloworld.png)
