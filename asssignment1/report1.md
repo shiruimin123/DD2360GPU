@@ -56,7 +56,7 @@ The calculated memory bandwidth is approximately 160.032 GB/s based on the outpu
 #### 1. Compile both OMP and CUDA versions of your selected benchmarks. Do you need to make any changes in Makefile?
 The modifications we need to make to the makefile include paths and compute capabilities.
 
-From exercise2 we found that the compute capability of Google Colab is "7.5". We specify the target architecture in the Makefile as "-arch sm_75" to support the code running on GPUs with sm_75 computing capabilities.
+From exercise we found that the computing capability of Google Colab is "7.5". We specify the target architecture in the Makefile as "-arch sm_75" to support the code running on GPUs with sm_75 computing capabilities.
 
 #### 2. Ensure the same input problem is used for OMP and CUDA versions. Report and compare their execution time. 
 particlefilter[CUDA]
@@ -75,16 +75,20 @@ lavaMD(OpenMP)
 
 ![image](https://github.com/shiruimin123/DD2360GPU/blob/main/asssignment1/images/lavaMD_openmp.jpg)
 #### 3. Do you observe expected speedup on GPU compared to CPU? Why or Why not?
-In the benchmark we used, whether particlefilter or lavaMD, we can observe obvious acceleration.
+We can observe obvious speedup in the benchmark we used, whether particlefilter or lavaMD.
+
+That's because GPU is throughput-oriented, which performs better in computing and memory-intensive applications. But CPU waste much time on control path.
 
 ## Exercise 4 - Run a HelloWorld on AMD GPU
 
 #### 1. How do you launch the code on GPU on Dardel supercomputer?
-Firstly, we compile the HelloWorld.cpp using ```make```
 
-Then, allocate for a time slot ```salloc -A edu23.dd2360 -p gpu -N 1 -t 00:10:00```
+Firstly, allocate for a time slot ```salloc -A edu23.dd2360 -p gpu -N 1 -t 00:10:00```
 
-Then, run the Helloworld file using ```srun -n 1 ./Helloworld```
+Then, we compile the HelloWorld.cpp using ```make```
+
+Finally, run the Helloworld file using ```srun -n 1 ./Helloworld```
+
 #### 2. Include a screenshot of your output from Dardel
 
 ![figures](https://github.com/shiruimin123/DD2360GPU/blob/main/asssignment1/figures/helloworld.png)
