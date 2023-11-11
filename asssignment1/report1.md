@@ -27,6 +27,7 @@
 ## Exercise 3 - Rodinia CUDA benchmarks and Comparison with CPU
 
 #### 1. Compile both OMP and CUDA versions of your selected benchmarks. Do you need to make any changes in Makefile?
+
 #### 2. Ensure the same input problem is used for OMP and CUDA versions. Report and compare their execution time. 
 particlefilter[CUDA]
 
