@@ -28,6 +28,18 @@ CPUs has fewer but more powerful cores that are optimized for handling complex t
 
 #### 3. One main advantage of GPU is its power efficiency, which can be quantified by Performance/Power, e.g., throughput as in FLOPS per watt power consumption. Calculate the power efficiency for the top 10 supercomputers. (Hint: use the table in the first lecture)
 
+|     name             | Rpeak (PFlop/s) |    Power (kW)   |  power efficiency   |
+|----------------------|:---------------:|:---------------:|:-------------------:|
+| FRONTIER             |   1,679.82      |	 22,703        |        0.074        |
+| Supercomputer Fugaku |   537.21        |	 29,899        |        0.018        |
+| LUMI                 |    428.70       |	6,016          |        0.071        |
+|  Leonardo            |        304.47   |	7,404          |        0.041        |
+|  Summit              |   200.79	       |	10,096         |      0.020          |
+|  Sierra              |    125.71	     |	 7,438         |        0.017        |
+|  Sunway TaihuLight   |   125.44        |  15,371         |	     0.008         |
+|  Perlmutter          |    93.75	       |	  	2,589      |      0.036          |
+|  Selene              | 79.22	         |	2,646          |       0.030         |
+|  	Tianhe-2A          | 100.68          |	18,482         |       0.005         |
 ## Exercise 2 - Query Nvidia GPU Compute Capability
 
 #### 1. The screenshot of the output from running deviceQuery test in /1_Utilities.
