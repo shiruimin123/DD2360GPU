@@ -46,7 +46,7 @@ CPUs has fewer but more powerful cores that are optimized for handling complex t
 ![image](https://github.com/shiruimin123/DD2360GPU/blob/main/asssignment1/images/exercise2.jpg)
 
 #### 2. What is the Compute Capability of your GPU device?
-The compute capability of the GPU device, as shown in the output from deviceQuery, is "7.5."
+As shown in the output from deviceQuery, the compute capability of the GPU device is "7.5."
 
 #### 3. The screenshot of the output from running bandwidthTest test in /1_Utilities.
 ![image](https://github.com/shiruimin123/DD2360GPU/blob/main/asssignment1/images/bandwidthtest.jpg)
