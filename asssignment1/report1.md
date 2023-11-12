@@ -1,4 +1,4 @@
-**contribute：** Ruimin Shi did exercises 1 and 4, Bowen Tian did exercises 2 and 3
+**contribute:** Ruimin Shi did exercises 1 and 4, Bowen Tian did exercises 2 and 3.
 
 # Assignment I:
 
