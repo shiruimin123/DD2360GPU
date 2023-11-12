@@ -3,10 +3,12 @@
 ## Exercise 1 - Reflection on GPU-accelerated Computing
 
 #### 1. List the main differences between GPUs and CPUs in terms of architecture.
+
 ##### 1. Parallel:
 GPU is highly parallel processors which can handle multiple tasks simultaneously. GPU has large number of cores, each capable of executing its own set of instructions independently.
 
 CPU is optimized for single-threaded performance and tasks that require more sequential processing. CPU has higher clock speeds and more complex cores.
+
 ##### 2. Number of Cores:
 GPU has larger number of simple cores. This allows them to process many simple tasks simultaneously, making them suitable for parallelizable tasks.
 
@@ -43,13 +45,13 @@ CPUs has fewer but more powerful cores that are optimized for handling complex t
 ## Exercise 2 - Query Nvidia GPU Compute Capability
 
 #### 1. The screenshot of the output from running deviceQuery test in /1_Utilities.
-![image](https://github.com/shiruimin123/DD2360GPU/blob/main/asssignment1/images/exercise2.jpg)
+![The screenshot of running deviceQuery test](./images/exercise2.jpg)
 
 #### 2. What is the Compute Capability of your GPU device?
 As shown in the output from deviceQuery, the compute capability of the GPU device is "7.5."
 
 #### 3. The screenshot of the output from running bandwidthTest test in /1_Utilities.
-![image](https://github.com/shiruimin123/DD2360GPU/blob/main/asssignment1/images/bandwidthtest.jpg)
+![The screenshot of running bandwidthTest](./images/bandwidthtest.jpg)
 
 #### 4. How will you calculate the GPU memory bandwidth (in GB/s) using the output from deviceQuery? (Hint: memory bandwidth is typically determined by clock rate and bus width, and check what double date rate (DDR) may impact the bandwidth). Are they consistent with your results from bandwidthTest?
 To calculate the GPU memory bandwidth (in GB/s) using the output from deviceQuery, the memory bandwidth can be calculated using the following formula:
@@ -73,19 +75,19 @@ From exercise we found that the computing capability of Google Colab is "7.5". W
 #### 2. Ensure the same input problem is used for OMP and CUDA versions. Report and compare their execution time. 
 particlefilter[CUDA]
 
-![image](https://github.com/shiruimin123/DD2360GPU/blob/main/asssignment1/images/particlefilter_cuda.jpg)
+![particlefilter_cuda](./images/particlefilter_cuda.jpg)
 
 particlefilter[OpenMP]
 
-![image](https://github.com/shiruimin123/DD2360GPU/blob/main/asssignment1/images/particlefilter_openmp.jpg)
+![particlefilter_openmp](./images/particlefilter_openmp.jpg)
 
 lavaMD(CUDA)
 
-![image](https://github.com/shiruimin123/DD2360GPU/blob/main/asssignment1/images/labaMD_cuda.jpg)
+![labaMD_cuda](./images/labaMD_cuda.jpg)
 
 lavaMD(OpenMP)
 
-![image](https://github.com/shiruimin123/DD2360GPU/blob/main/asssignment1/images/lavaMD_openmp.jpg)
+![lavaMD_openmp](./images/lavaMD_openmp.jpg)
 #### 3. Do you observe expected speedup on GPU compared to CPU? Why or Why not?
 We can observe obvious speedup in the benchmark we used, whether particlefilter or lavaMD.
 
@@ -103,4 +105,4 @@ Finally, run the Helloworld file using ```srun -n 1 ./Helloworld```
 
 #### 2. Include a screenshot of your output from Dardel
 
-![figures](https://github.com/shiruimin123/DD2360GPU/blob/main/asssignment1/figures/helloworld.png)
+![a screenshot of output from Dardel](./figures/helloworld.png)
