@@ -11,7 +11,7 @@ First, we need to compile the program(.c) with the NVIDIA CUDA compiler (nvcc) a
 
    For the vector length of N, the number of floating-point operations is 2N.---------------Figure--------------
 3. How many global memory reads are being performed by your kernel?
-   --------------------------------------------------------------------------
+   -------------------------------I DONT KNOW-----------------------------------------
 #### 3. For a vector length of 1024:
 
 1. Explain how many CUDA threads and thread blocks you used.
