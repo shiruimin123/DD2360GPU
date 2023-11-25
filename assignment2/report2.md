@@ -4,9 +4,11 @@
 
 #### 1. Explain how the program is compiled and run. 
 First, we need to compile the program(.c) with the NVIDIA CUDA compiler (nvcc)
+
 ```nvcc -arch=sm_75 lab2exercise1.cu -o exercise1.out```
 
 Then we need to run the compiled executable file directly. The first execution parameter is the file name and the second is the input length of the vector we need to calculate.
+
 ```./exercise1.out 131070```
 
 #### 2. For a vector length of N:
