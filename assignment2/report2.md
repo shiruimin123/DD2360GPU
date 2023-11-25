@@ -30,7 +30,7 @@ In our program, the number of thread per block is defined as 256. So the number 
 
 As the figure below shows, the achieved occupancy is: 17.32%.
 
-![The running results using Nvidia Nsight with 1024 input length](./images/E1_3_2.jpg)
+![The running results using Nvidia Nsight with 1024 input length](./images/E1_3_2.png)
 
 #### 4 .Now increase the vector length to 131070:
 
@@ -46,7 +46,7 @@ Since the number of thread per block is defined as: 1024. The number of thread b
 
 As the figure below shows, the achieved occupancy is: 78.03%.
 
-![The running results using Nvidia Nsight with 131070 input length](./images/E1_4_3.jpg)
+![The running results using Nvidia Nsight with 131070 input length](./images/E1_4_3.png)
 
 #### 5.Further increase the vector length (try 6-10 different vector length), plot a stacked bar chart showing the breakdown of time including (1) data copy from host to device (2) the CUDA kernel (3) data copy from device to host. For this, you will need to add simple CPU timers to your code regions.
 
