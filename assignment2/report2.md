@@ -9,13 +9,14 @@ First, we need to compile the program(.c) with the NVIDIA CUDA compiler (nvcc) a
 
 1. How many floating operations are being performed in your vector add kernel?
 
-   For the vector length of N, the number of floating-point operations is 2N.
+   For the vector length of N, the number of floating-point operations is 2N.---------------Figure--------------
 3. How many global memory reads are being performed by your kernel?
-   
+   --------------------------------------------------------------------------
 #### 3. For a vector length of 1024:
 
 1. Explain how many CUDA threads and thread blocks you used.
-
+   
+In our program, the number of thread per block is defined as 256. So the number of thread block that we used should be: (1024/256) = 4.
 2 .Profile your program with Nvidia Nsight. What Achieved Occupancy did you get? You might find https://docs.nvidia.com/nsight-compute/NsightComputeCli/index.html#nvprof-metric-comparison useful.
 
 #### 4 .Now increase the vector length to 131070:
