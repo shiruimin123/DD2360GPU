@@ -11,19 +11,26 @@ First, we need to compile the program(.c) with the NVIDIA CUDA compiler (nvcc) a
 
    For the vector length of N, the number of floating-point operations is 2N.---------------Figure--------------
 3. How many global memory reads are being performed by your kernel?
-   -------------------------------I DONT KNOW-----------------------------------------
+   -------------------------------I DONT KNOW---------------------
 #### 3. For a vector length of 1024:
 
 1. Explain how many CUDA threads and thread blocks you used.
    
-In our program, the number of thread per block is defined as 256. So the number of thread block that we used should be: (1024/256) = 4.
-2 .Profile your program with Nvidia Nsight. What Achieved Occupancy did you get? You might find https://docs.nvidia.com/nsight-compute/NsightComputeCli/index.html#nvprof-metric-comparison useful.
+In our program, the number of thread per block is defined as 256. So the number of thread block that we used should be: [(1024 + 256 - 1)/256] = 4.
+
+2 .Profile your program with Nvidia Nsight. What Achieved Occupancy did you get?
+
+As the figure below shows, the achieved occupancy is: 17.32%. -----Figure------------
 
 #### 4 .Now increase the vector length to 131070:
 
 1. Did your program still work? If not, what changes did you make?
 
+Still work. We changed the number of thread per block as: 1024 so that the number of block would not be too large. 
+
 2. Explain how many CUDA threads and thread blocks you used.
+
+Since the number of thread per block is defined as: 1024. The number of thread block that we used is: [(131070 + 1024 - 1 )/1024] = 128.
 
 3. Profile your program with Nvidia Nsight. What Achieved Occupancy do you get now?
 
