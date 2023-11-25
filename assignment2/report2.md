@@ -8,7 +8,9 @@ First, we need to compile the program(.c) with the NVIDIA CUDA compiler (nvcc) a
 #### 2. For a vector length of N:
 
 1. How many floating operations are being performed in your vector add kernel?
-  For the vector length of N, the number of floating-point operations is 2N.
+   
+
+  
 2. How many global memory reads are being performed by your kernel?
    
 #### 3. For a vector length of 1024:
