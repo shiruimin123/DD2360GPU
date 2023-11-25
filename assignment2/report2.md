@@ -3,6 +3,7 @@
 ### Exercise 1 - Your first CUDA program and GPU performance metrics
 
 #### 1. Explain how the program is compiled and run. 
+First, we need to compile the program(.c) with the NVIDIA CUDA compiler (nvcc) and get the output compiled executable file(.out). Then we need to run the comipled executable file directly. 
 
 #### 2. For a vector length of N:
 
