@@ -14,7 +14,7 @@
 
 1. Explain how many CUDA threads and thread blocks you used.
 
-2 .Profile your program with Nvidia Nsight. What Achieved Occupancy did you get? You might find https://docs.nvidia.com/nsight-compute/NsightComputeCli/index.html#nvprof-metric-comparisonLinks to an external site. useful.
+2 .Profile your program with Nvidia Nsight. What Achieved Occupancy did you get? You might find https://docs.nvidia.com/nsight-compute/NsightComputeCli/index.html#nvprof-metric-comparison useful.
 
 #### 4 .Now increase the vector length to 131070:
 
