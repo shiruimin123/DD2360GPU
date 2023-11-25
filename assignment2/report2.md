@@ -3,6 +3,7 @@
 ### Exercise 1 - Your first CUDA program and GPU performance metrics
 
 #### 1. Explain how the program is compiled and run. 
+
 First, we need to compile the program(.c) with the NVIDIA CUDA compiler (nvcc)
 
 ```nvcc -arch=sm_75 lab2exercise1.cu -o exercise1.out```
@@ -12,6 +13,7 @@ Then we need to run the compiled executable file directly. The first execution p
 ```./exercise1.out 131070```
 
 #### 2. For a vector length of N:
+
 ##### 1. How many floating operations are being performed in your vector add kernel?
 
    For the vector length of N, the total number of floating-point operations is 2N, N addition, and N assignment respectively.
