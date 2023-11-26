@@ -90,6 +90,7 @@ lavaMD(CUDA)
 lavaMD(OpenMP)
 
 ![lavaMD_openmp](./images/lavaMD_openmp.jpg)
+
 #### 3. Do you observe expected speedup on GPU compared to CPU? Why or Why not?
 We can observe obvious speedup in the benchmark we used, whether particlefilter or lavaMD.
 
@@ -98,6 +99,7 @@ That's because GPU is throughput-oriented, which performs better in computing an
 ## Exercise 4 - Run a HelloWorld on AMD GPU
 
 #### 1. How do you launch the code on GPU on Dardel supercomputer?
+
 
 Firstly, allocate for a time slot ```salloc -A edu23.dd2360 -p gpu -N 1 -t 00:10:00```
 

@@ -70,7 +70,7 @@ int main(int argc, char **argv) {
 
 //@@ Launch the GPU Kernel here
   double gpu_start = cpuSecond();
-  vecAdd<<<Db, Dg>>>(deviceInput1, deviceInput2, deviceOutput, inputLength);
+  vecAdd<<<Dg, Db>>>(deviceInput1, deviceInput2, deviceOutput, inputLength);
   cudaDeviceSynchronize();
   double gpu_end = cpuSecond();
   printf("Kernel Execution Time: %f seconds\n", gpu_end - gpu_start);
