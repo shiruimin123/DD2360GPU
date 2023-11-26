@@ -12,8 +12,6 @@ Then we need to run the compiled executable file directly. The first execution p
 
 ```./exercise1.out <InputLength>```
 
-![The process of compiling and running](./images/E1_1.png)
-
 #### 2. For a vector length of N:
 
 ##### 1. How many floating operations are being performed in your vector add kernel?
@@ -24,7 +22,7 @@ Then we need to run the compiled executable file directly. The first execution p
    
 ##### 2. How many global memory reads are being performed by your kernel?
 
-There are N global reads performed by our kernel totally and two in each thread, since the ```cudamalloc()``` function will allocate vector into global space at GPU.
+There are 2N global reads performed by our kernel totally and two in each thread, since the ```cudamalloc()``` function will allocate vector into global space at GPU.
 
 #### 3. For a vector length of 1024:
 ##### 1. Explain how many CUDA threads and thread blocks you used.
