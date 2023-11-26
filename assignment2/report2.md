@@ -78,7 +78,8 @@ We assume that the sizes of the two matrices multiplied are a * b and b * c resp
 
 #### 3. How many global memory reads are being performed by your kernel?  
 
----------------------------------------------------------------------------
+
+We assume that the sizes of the two matrices multiplied are a * b and b * c respectively, and global memory reads are a * b + b *c.
 
 #### 4. For a matrix A of (128x128) and B of (128x128):
 
@@ -125,4 +126,6 @@ The overall time shares and trends are similar to those using the doule data typ
 | h2d_time        |                    0.000491 |                  0.001489 |                       0.004224 |                       0.00821  |                      0.018303 |                      0.026075 |
 | execution _time |                    0.000717 |                  0.003346 |                       0.024293 |                       0.081021 |                      0.191421 |                      0.281914 |
 | d2h_time        |                    0.000532 |                  0.001788 |                       0.006813 |                       0.013132 |                      0.023835 |                      0.037752 |
+
+
 ![the stacked bar chart for different input size in matrix multiplication with float data type](./images/E2_7.png)
