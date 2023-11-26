@@ -85,6 +85,8 @@ We assume that the sizes of the two matrices multiplied are a*b and b*c respecti
 #### 4. For a matrix A of (128x128) and B of (128x128):
 
 ##### 1. Explain how many CUDA threads and thread blocks you used.
+
+In the program, we define the number of thread per block as: 16 * 16 = 256. The number of block should be: [(128+16-1)/16]^2 = 64.
   
 ##### 2. Profile your program with Nvidia Nsight. What Achieved Occupancy did you get?
 
