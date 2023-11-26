@@ -24,7 +24,7 @@ Then we need to run the compiled executable file directly. The first execution p
    
 ##### 2. How many global memory reads are being performed by your kernel?
 
-There are N global reads performed by our kernel totally and two in each thread, since the ```cudamalloc()``` function will allocate vecotr into global space at GPU.
+There are N global reads performed by our kernel totally and two in each thread, since the ```cudamalloc()``` function will allocate vector into global space at GPU.
 
 #### 3. For a vector length of 1024:
 ##### 1. Explain how many CUDA threads and thread blocks you used.
@@ -70,7 +70,12 @@ As the vector length increases, the time for data copying from host to device an
 
 #### 1. Name three applications domains of matrix multiplication.
 
+1. Deep learning: In the convolution and fully connected layers of the neuron network, matrix multiplication is necessary.
+2. digital signal processing like FFT, DCT, and so on.
+3. SLAM: in the karma filter, matrix multiplication is used to update the state.
+
 #### 2. How many floating operations are being performed in your matrix multiply kernel? 
+
 
 #### 3. How many global memory reads are being performed by your kernel?  
 
