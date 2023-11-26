@@ -108,4 +108,21 @@ As the figure below shows, the achieved occupancy is: 98.01%.
 
 #### 6. Further increase the size of matrix A and B, plot a stacked bar chart showing the breakdown of time including (1) data copy from host to device (2) the CUDA kernel (3) data copy from device to host. For this, you will need to add simple CPU timers to your code regions. Explain what you observe.
 
+The time that data copy from host to device and data copy from device to host is sounding linearly rise as the input size rises. In small input size, the data movement time takes up most of the time, but as execution time in the kernel increases dramatically, it gradually takes up a major portion of the time. This is due to the fact that we are applying a thread to calculate the sum of the products of rows and columns, and as the number of rows and columns increases the number of floating-point operations performed increases, so the execution time increases dramatically and dominates.
+| input size      |   ((256 x 256) (256 x 256)) |   (512 x 512) (512 x 512) |   (1024 x 1024) (1024 x 1024)  |   (1536 x 1536) (1536 x 1536)  |   (2048 x 2048) (2048 x 2048) |   (2560 x 2560) (2560 x 2560) |
+|-----------------|-----------------------------|---------------------------|--------------------------------|--------------------------------|-------------------------------|-------------------------------|
+| h2d_time        |                    0.001912 |                  0.001346 |                       0.00411  |                       0.010207 |                      0.016338 |                      0.0272   |
+| execution _time |                    0.00052  |                  0.00335  |                       0.024283 |                       0.081044 |                      0.191432 |                      0.312322 |
+| d2h_time        |                    0.000466 |                  0.001615 |                       0.006646 |                       0.013542 |                      0.023271 |                      0.042542 |
+
+![the stacked bar chart for different input size in matrix multiplication with double data type](./images/E2_6.png)
+
 #### 7. Now, change DataType from double to float, re-plot the a stacked bar chart showing the time breakdown. Explain what you observe. 
+
+The overall time shares and trends are similar to those using the doule data type, but the time spent is less than using the doule data type.
+| input size      |   ((256 x 256) (256 x 256)) |   (512 x 512) (512 x 512) |   (1024 x 1024) (1024 x 1024)  |   (1536 x 1536) (1536 x 1536)  |   (2048 x 2048) (2048 x 2048) |   (2560 x 2560) (2560 x 2560) |
+|-----------------|-----------------------------|---------------------------|--------------------------------|--------------------------------|-------------------------------|-------------------------------|
+| h2d_time        |                    0.000491 |                  0.001489 |                       0.004224 |                       0.00821  |                      0.018303 |                      0.026075 |
+| execution _time |                    0.000717 |                  0.003346 |                       0.024293 |                       0.081021 |                      0.191421 |                      0.281914 |
+| d2h_time        |                    0.000532 |                  0.001788 |                       0.006813 |                       0.013132 |                      0.023835 |                      0.037752 |
+![the stacked bar chart for different input size in matrix multiplication with float data type](./images/E2_7.png)
