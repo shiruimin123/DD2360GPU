@@ -80,7 +80,7 @@ We assume that the sizes of the two matrices multiplied are a * b and b * c resp
 
 #### 3. How many global memory reads are being performed by your kernel?  
 
-
+---------------------------------------------------------------------------
 
 #### 4. For a matrix A of (128x128) and B of (128x128):
 
@@ -89,6 +89,9 @@ We assume that the sizes of the two matrices multiplied are a * b and b * c resp
 In the program, we define the number of thread per block as: 16 * 16 = 256. The number of block should be: [(128+16-1)/16]^2 = 64.
   
 ##### 2. Profile your program with Nvidia Nsight. What Achieved Occupancy did you get?
+
+As the figure below shows, the achieved occupancy is: 42.80%.
+![The running results using Nvidia Nsight with 128 * 128 ](./images/E2_4_2.png)
 
 #### 5. For a matrix A of (511x1023) and B of (1023x4094):
 
