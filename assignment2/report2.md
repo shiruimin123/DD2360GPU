@@ -12,7 +12,7 @@ Then we need to run the compiled executable file directly. The first execution p
 
 ```./exercise1.out 131070```
 
-![The running results using Nvidia Nsight with 1024 input length](./images/E1_3_2.png)
+![The running results using Nvidia Nsight with 1024 input length](./images/E1_1.png)
 
 #### 2. For a vector length of N:
 
