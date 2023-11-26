@@ -11,6 +11,7 @@ First, we need to compile the program(.c) with the NVIDIA CUDA compiler (nvcc)
 Then we need to run the compiled executable file directly. The first execution parameter is the file name and the second is the input length of the vector we need to calculate.
 
 ```./exercise1.out 131070```
+(./images/E1_1.png)
 
 #### 2. For a vector length of N:
 
@@ -19,7 +20,6 @@ Then we need to run the compiled executable file directly. The first execution p
    For the vector length of N, the total number of floating-point operations is 2N, N addition, and N assignment respectively.
    
    At each thread, we just have one addition and one assignment.
-   ---------------Figure--------------   
    
 ##### 2. How many global memory reads are being performed by your kernel?
 
