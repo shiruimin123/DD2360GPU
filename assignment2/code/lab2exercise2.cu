@@ -7,17 +7,17 @@
 // Compute C = A * B
 __global__ void gemm(DataType *A, DataType *B, DataType *C, int numARows,
                       int numAColumns, int numBRows, int numBColumns) {
-int row = blockIdx.y * blockDim.y + threadIdx.y;
-int col = blockIdx.x * blockDim.x + threadIdx.x;
+  int row = blockIdx.y * blockDim.y + threadIdx.y;
+  int col = blockIdx.x * blockDim.x + threadIdx.x;
 //printf("hello");
-if((row < numARows)&&(col < numBColumns)){
-  DataType sum = 0.0;
-  for(int i = 0; i < numAColumns; i++){
-    sum += A[row * numAColumns + i] * B[i * numBColumns + col];
-  }
-  C[row * numBColumns + col] = sum;
+  if((row < numARows)&&(col < numBColumns)){
+    DataType sum = 0.0;
+    for(int i = 0; i < numAColumns; i++){
+      sum += A[row * numAColumns + i] * B[i * numBColumns + col];
+    }
+    C[row * numBColumns + col] = sum;
 //printf("Result in Kernel (%f)", C[row * numBColumns + col]);
- }
+  }
 }
 double cpuSecond() {
   struct timeval tp;
@@ -66,10 +66,10 @@ if(argc != 5) {
 }
 
 //@@ Insert code below to allocate Host memory for input and output
-hostA   = (DataType *)malloc(numARows * numAColumns * sizeof(DataType));
-hostB   = (DataType *)malloc(numBRows * numBColumns * sizeof(DataType));
-hostC   = (DataType *)malloc(numCRows * numCColumns * sizeof(DataType));
-resultRef = (DataType *)malloc(numCRows * numCColumns * sizeof(DataType));
+  hostA   = (DataType *)malloc(numARows * numAColumns * sizeof(DataType));
+  hostB   = (DataType *)malloc(numBRows * numBColumns * sizeof(DataType));
+  hostC   = (DataType *)malloc(numCRows * numCColumns * sizeof(DataType));
+  resultRef = (DataType *)malloc(numCRows * numCColumns * sizeof(DataType));
 
 //@@ Insert code below to initialize hostA and hostB to random numbers, and create reference result in CPU
 for(int i = 0; i < numARows; i++){
@@ -94,33 +94,37 @@ for(int i = 0; i < numARows; i++){
 }
 
 //@@ Insert code below to allocate GPU memory here
-cudaMalloc((void **)&deviceA, numARows * numAColumns * sizeof(DataType));
-cudaMalloc((void **)&deviceB, numBRows * numBColumns * sizeof(DataType));
-cudaMalloc((void **)&deviceC, numCRows * numCColumns * sizeof(DataType));
+  cudaMalloc((void **)&deviceA, numARows * numAColumns * sizeof(DataType));
+  cudaMalloc((void **)&deviceB, numBRows * numBColumns * sizeof(DataType));
+  cudaMalloc((void **)&deviceC, numCRows * numCColumns * sizeof(DataType));
 
 //@@ Insert code to below to Copy memory to the GPU here
-cudaMemcpy(deviceA, hostA, numARows * numAColumns * sizeof(DataType), cudaMemcpyHostToDevice);
-cudaMemcpy(deviceB, hostB, numBRows * numBColumns * sizeof(DataType), cudaMemcpyHostToDevice);
-
+  double h2d_start = cpuSecond();
+  cudaMemcpy(deviceA, hostA, numARows * numAColumns * sizeof(DataType), cudaMemcpyHostToDevice);
+  cudaMemcpy(deviceB, hostB, numBRows * numBColumns * sizeof(DataType), cudaMemcpyHostToDevice);
+  double h2d_end = cpuSecond();
+  printf("Data copy from host to device: %f seconds\n", h2d_end - h2d_start);
 //@@ Initialize the grid and block dimensions here
 //int Dbx = 32;    //Can be adjust according to the architecture of GPU
 //int Dby = 32;
 //int Dgx = (numBColumns + Dbx - 1)/Dbx;
 //int Dgy = (numARows + Dby - 1)/Dby;
-dim3 dimBlock(16,16);
-dim3 dimGrid((numBColumns + dimBlock.x - 1) / dimBlock.x, (numARows + dimBlock.y - 1) / dimBlock.y);
+  dim3 dimBlock(32,32);
+  dim3 dimGrid((numBColumns + dimBlock.x - 1) / dimBlock.x, (numARows + dimBlock.y - 1) / dimBlock.y);
 
 //@@ Launch the GPU Kernel here
-double gpu_start = cpuSecond();
-gemm<<<dimGrid, dimBlock>>>(deviceA, deviceB, deviceC, numARows, numAColumns, numAColumns, numBColumns);
+  double gpu_start = cpuSecond();
+  gemm<<<dimGrid, dimBlock>>>(deviceA, deviceB, deviceC, numARows, numAColumns, numAColumns, numBColumns);
 //gemm<<<dim3(Dgx,Dgy),dim3(Dbx,Dby)>>>(deviceA, deviceB, deviceC, numARows, numAColumns, numBRows, numBColumns);
-cudaDeviceSynchronize();
-double gpu_end = cpuSecond();
-printf("Kernel Execution Time: %f seconds\n", gpu_end - gpu_start);
-
+  cudaDeviceSynchronize();
+  double gpu_end = cpuSecond();
+  printf("Kernel Execution Time: %f seconds\n", gpu_end - gpu_start);
+   
 //@@ Copy the GPU memory back to the CPU here
-cudaMemcpy(hostC, deviceC, numCRows * numCColumns * sizeof(DataType), cudaMemcpyDeviceToHost);
-
+  double d2h_start = cpuSecond();
+  cudaMemcpy(hostC, deviceC, numCRows * numCColumns * sizeof(DataType), cudaMemcpyDeviceToHost);
+  double d2h_end = cpuSecond();
+  printf("Data copy from device to host: %f seconds\n", d2h_end - d2h_start);
 //@@ Insert code below to compare the output with the reference
 for(int i = 0; i < numCRows; i++){
   for(int j = 0; j < numCColumns; j++){
@@ -129,18 +133,18 @@ for(int i = 0; i < numCRows; i++){
     }
   }
 }
-printf("Results match!\n");
+  printf("Results match!\n");
 
 //@@ Free the GPU memory here
-cudaFree(deviceA);
-cudaFree(deviceB);
-cudaFree(deviceC);
+ cudaFree(deviceA);
+ cudaFree(deviceB);
+ cudaFree(deviceC);
 
 //@@ Free the CPU memory here
-free(hostA);
-free(hostB);
-free(hostC);
-free(resultRef);
+ free(hostA);
+ free(hostB);
+ free(hostC);
+ free(resultRef);
 
 return 0;
 }
