@@ -76,8 +76,11 @@ As the vector length increases, the time for data copying from host to device an
 
 #### 2. How many floating operations are being performed in your matrix multiply kernel? 
 
+We assume that the sizes of the two matrices multiplied are a*b and b*c respectively, and the matrix size we obtained is a*c. For each element in the result matrix, b multiplication floating operations, (b-1) addition floating operations and 1 assignment operation are required respectively, that is, a total of 2b operations. For a*c elements, a total of 2abc operations are required.
 
 #### 3. How many global memory reads are being performed by your kernel?  
+
+
 
 #### 4. For a matrix A of (128x128) and B of (128x128):
 
