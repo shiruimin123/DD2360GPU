@@ -11,7 +11,8 @@ First, we need to compile the program(.c) with the NVIDIA CUDA compiler (nvcc)
 Then we need to run the compiled executable file directly. The first execution parameter is the file name and the second is the input length of the vector we need to calculate.
 
 ```./exercise1.out 131070```
-!(./images/E1_1.png)
+
+![The running results using Nvidia Nsight with 1024 input length](./images/E1_3_2.png)
 
 #### 2. For a vector length of N:
 
