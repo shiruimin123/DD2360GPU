@@ -54,6 +54,13 @@ As the figure below shows, the achieved occupancy is: 78.03%.
 
 #### 5.Further increase the vector length (try 6-10 different vector length), plot a stacked bar chart showing the breakdown of time including (1) data copy from host to device (2) the CUDA kernel (3) data copy from device to host. For this, you will need to add simple CPU timers to your code regions.
 
+| input size      |     1024 |    50000 |   131070 |   150000 |   300000 |   700000 |   1000000 |
+|-----------------|----------|----------|----------|----------|----------|----------|-----------|
+| h2d_time        | 0.000353 | 0.000542 | 0.000816 | 0.000903 | 0.001501 | 0.002825 |  0.003782 |
+| execution _time | 3.2e-05  | 5.1e-05  | 9.5e-05  | 6.5e-05  | 6.1e-05  | 9.9e-05  |  0.000132 |
+| d2h_time        | 2.5e-05  | 0.000338 | 0.000817 | 0.000926 | 0.001672 | 0.003674 |  0.005454 |
+
+
 ### Exercise 2 - 2D Dense Matrix Multiplication
 
 #### 1. Name three applications domains of matrix multiplication.
