@@ -55,6 +55,8 @@ As the figure below shows, the achieved occupancy is: 78.03%.
 
 #### 5. Further increase the vector length (try 6-10 different vector length), plot a stacked bar chart showing the breakdown of time including (1) data copy from host to device (2) the CUDA kernel (3) data copy from device to host. For this, you will need to add simple CPU timers to your code regions.
 
+As the vector length increases, the time for data copying from host to device and data copying from device to host increase almost linearly, but the execution time in the kernel remains stable with negligible time consumption. 
+
 | input size      |     1024 |    50000 |   131070 |   150000 |   300000 |   700000 |   1000000 |
 |-----------------|----------|----------|----------|----------|----------|----------|-----------|
 | h2d_time        | 0.000353 | 0.000542 | 0.000816 | 0.000903 | 0.001501 | 0.002825 |  0.003782 |
