@@ -5,7 +5,7 @@
 ## Exercise 1
 
 ### 1. Describe all optimizations you tried regardless of whether you committed to them or abandoned them and whether they improved or hurt performance. 
-
+We use shared memory to reduce the access time since the shared memory is faster than global memory. While in this exercise, the atomic operation is necessary to avoid the race condition.
 ### 2. Which optimizations you chose in the end and why? 
 ### 3. How many global memory reads are being performed by your kernel? 
 ### 4. How many atomic operations are being performed by your kernel? 
