@@ -5,9 +5,13 @@
 ## Exercise 1
 
 ### 1. Describe all optimizations you tried regardless of whether you committed to them or abandoned them and whether they improved or hurt performance. 
-We use shared memory to reduce the access time since the shared memory is faster than global memory. While in this exercise, the atomic operation is necessary to avoid the race condition.
+We declare a shared memory (Bins) to store a local histogram sinccce shared memory is much faster than global memory and can be used for efficient inter-thread communication within a block. In addition, we updated the histogram bins with atomic operation(atomicAdd). This ensures that multiple threads can safely increment the same bin without conflicts. 
 ### 2. Which optimizations you chose in the end and why? 
+------------------------------------------
 ### 3. How many global memory reads are being performed by your kernel? 
+In the histogram kernal, each thread reads one element from the global memory and updates the corresponding bin in the shared memory. The number of global memory reads per thread is equal to the number of iterations of the loop which is used to calculate the global thread ID.
+
+While the convert_kernel does not perform additional global memory reads since it only modifies the contents of the global memory bins based on the calculated histogram.
 ### 4. How many atomic operations are being performed by your kernel? 
 ### 5. How much shared memory is used in your code?
 ### 6. How would the value distribution of the input array affect the contention among threads? For instance, what contentions would you expect if every element in the array has the same value?
