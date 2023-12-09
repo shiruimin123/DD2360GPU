@@ -17,9 +17,10 @@ After that, we added the shared memory values to the global memory in parallel, 
 Finally we changed the number of threads per block from 256 to 1024, the kernal execution time is: **0.000046 seconds**(When the inputLength is set as 100000).
 
 ### 2. Which optimizations you chose in the end and why? 
-We set the shared memory to zero in parallel during initialization phase, since parallel initialization will be more efficient when the amount of data is large. The detailed information can be refered in the last question. 
+We set the shared memory to zero during initialization phase and add the shared memory value to global memory in parallel, also we increase the number of threads per block. The detailed information can be refered in the last question. 
 ### 3. How many global memory reads are being performed by your kernel? 
 In the histogram kernal, each thread reads one element from the global memory and updates the corresponding bin in the shared memory. In this design, I set the inputLength as 100_000. So the time of global memory read should be 100_000.
+
 While the convert_kernel does not perform additional global memory reads since it only modifies the contents of the global memory bins based on the calculated histogram.
 ### 4. How many atomic operations are being performed by your kernel? 
 ### 5. How much shared memory is used in your code?
