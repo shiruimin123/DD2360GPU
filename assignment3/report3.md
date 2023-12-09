@@ -26,7 +26,7 @@ While the convert_kernel does not perform additional global memory reads since i
 There are two atomic operation for one thread, so the number of atomic operations performed by kernal should be: 200_000.
 ### 5. How much shared memory is used in your code?
 The number of shared memory should be: 
-$$[number of block] * [number of bins] * 4byte $$
+$$[number_of_block] * [number_of_bins] * 4byte $$
 So the result is : 
 $$[(100000 + 1024 - 1)/1024] * 4096 * 4 = 1622016 $$
 ### 6. How would the value distribution of the input array affect the contention among threads? For instance, what contentions would you expect if every element in the array has the same value?
