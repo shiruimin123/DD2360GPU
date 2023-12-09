@@ -8,13 +8,13 @@
 
 We declare a shared memory (Bins) to store a local histogram sinccce shared memory is much faster than global memory and can be used for efficient inter-thread communication within a block. And we updated the histogram bins with atomic operation(atomicAdd). This ensures that multiple threads can safely increment the same bin without conflicts. 
 
-In addition to this, I tried doing parallel initialization. My original code is shown below and the kernal execution time is: 0.000318 seconds(When the inputLength is set as 100000)
+In addition to this, I tried doing parallel initialization. My original code is shown below and the kernal execution time is: **0.000318 seconds**(When the inputLength is set as 100000)
 
-Then we tried to initialize the shared memory in parallel. The code is shown below and the kernal execution time is: 0.000331 seconds(When the inputLength is set as 100000)
+Then we tried to initialize the shared memory in parallel. The code is shown below and the kernal execution time is: **0.000331 seconds**(When the inputLength is set as 100000)
 
-After that, we added the shared memory values to the global memory in parallel, and the kernal execution time is: 0.000059 seconds(When the inputLength is set as 100000)
+After that, we added the shared memory values to the global memory in parallel, and the kernal execution time is: **0.000059 seconds**(When the inputLength is set as 100000)
 
-Finally we changed the number of threads per block from 256 to 1024, the kernal execution time is: 0.000046 seconds(When the inputLength is set as 100000).
+Finally we changed the number of threads per block from 256 to 1024, the kernal execution time is: **0.000046 seconds**(When the inputLength is set as 100000).
 
 ### 2. Which optimizations you chose in the end and why? 
 We set the shared memory to zero in parallel during initialization phase, since parallel initialization will be more efficient when the amount of data is large. The detailed information can be refered in the last question. 
