@@ -5,7 +5,11 @@
 ## Exercise 1
 
 ### 1. Describe all optimizations you tried regardless of whether you committed to them or abandoned them and whether they improved or hurt performance. 
+
 We declare a shared memory (Bins) to store a local histogram sinccce shared memory is much faster than global memory and can be used for efficient inter-thread communication within a block. In addition, we updated the histogram bins with atomic operation(atomicAdd). This ensures that multiple threads can safely increment the same bin without conflicts. 
+In addition to this, I tried doing parallel initialization. My original code is shown below：
+----------------------------------------------------
+
 ### 2. Which optimizations you chose in the end and why? 
 ------------------------------------------
 ### 3. How many global memory reads are being performed by your kernel? 
