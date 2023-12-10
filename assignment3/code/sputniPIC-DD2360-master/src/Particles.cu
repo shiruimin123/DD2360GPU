@@ -238,7 +238,7 @@ __global__ void mover_PC_gpu_kernel(struct particles* part, struct EMfield* fiel
     
     int i = blockDim.x * blockIdx.x + threadIdx.x; // thread ID
     
-    if (i >= Part->nop) 
+    if (i >= part->nop) 
         return;
     // auxiliary variables
     FPpart dt_sub_cycling = (FPpart) param->dt/((double) part->n_sub_cycles);
@@ -420,20 +420,20 @@ int mover_PC_gpu(struct particles* part, struct EMfield* field, struct grid* grd
         int Db = 1024;
         int Dg = (part->nop + Db - 1) / Db;
         // Call the CUDA kernel function
-        mover_PC_gpu_kernel<<<Dg, Db>>>(devicePart, deviceField,deviceGrd,deviceParam);    
+        mover_PC_gpu_kernel<<<Dg, Db>>>(devicepart, devicefield,devicegrd,deviceparam);    
     }
     
     // Copy memory back from Device to Host 
-    cudaMemcpy(part, devicePart, sizeof(particles), cudaMemcpyDeviceToHost);
-    cudaMemcpy(field, deviceField, sizeof(EMfield), cudaMemcpyDeviceToHost);
-    cudaMemcpy(grd, deviceGrd, sizeof(grid), cudaMemcpyDeviceToHost);
-    cudaMemcpy(param, deviceParam, sizeof(parameters), cudaMemcpyDeviceToHost);
+    cudaMemcpy(part, devicepart, sizeof(particles), cudaMemcpyDeviceToHost);
+    cudaMemcpy(field, devicefield, sizeof(EMfield), cudaMemcpyDeviceToHost);
+    cudaMemcpy(grd, devicegrd, sizeof(grid), cudaMemcpyDeviceToHost);
+    cudaMemcpy(param, deviceparam, sizeof(parameters), cudaMemcpyDeviceToHost);
     
     // Free device memory
-    cudaFree(devicePart);
-    cudaFree(deviceField);
-    cudaFree(deviceGrd);
-    cudaFree(deviceParam);
+    cudaFree(devicepart);
+    cudaFree(devicefield);
+    cudaFree(devicegrd);
+    cudaFree(deviceparam);
     
     return 0; // exit successcully
 
