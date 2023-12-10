@@ -334,7 +334,7 @@ int mover_PC_GPU(struct particles* part, struct EMfield* field, struct grid* grd
     // start subcycling
     for (int i_sub=0; i_sub <  part->n_sub_cycles; i_sub++){
         // move each particle with new fields
-        dim3 dimGrid(1024,1,1);
+        dim3 dimGrid((part->nop + 1024 - 1) / 1024,1,1);
         dim3 dimBlock(1024,1,1);
         // Call the CUDA kernel function
         mover_GPU<<<dimGrid,dimBlock>>>(devicePart, deviceField,deviceGrd,deviceParam);    

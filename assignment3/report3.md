@@ -84,10 +84,16 @@ Then, we copy the results from device to host and release the allocation.
 
 ### 3. Compare the output of both CPU and GPU implementation to guarantee that your GPU implementations produce correct answers.
 
-
+![results CPU version](./images/CPU.png)
+![results GPU version](./images/GPU.png)
 ### 4. Compare the execution time of your GPU implementation with its CPU version.
 
 CPU version:
- Tot. Simulation Time (s) = 61.9859
+   Tot. Simulation Time (s) = 61.9859
    Mover Time / Cycle   (s) = 3.43598
    Interp. Time / Cycle (s) = 2.47185
+
+GPU version:
+   Tot. Simulation Time (s) = 30.5093
+   Mover Time / Cycle   (s) = 0.265047
+   Interp. Time / Cycle (s) = 2.49647
