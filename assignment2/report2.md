@@ -22,6 +22,7 @@ Then we need to run the compiled executable file directly. The first execution p
    
 ##### 2. How many global memory reads are being performed by your kernel?
 
+
 There are 2N global reads performed by our kernel totally and two in each thread, since the ```cudamalloc()``` function will allocate vector into global space at GPU.
 
 #### 3. For a vector length of 1024:
@@ -32,6 +33,7 @@ In our program, the number of thread per block is defined as 256. So the number 
 ##### 2. Profile your program with Nvidia Nsight. What Achieved Occupancy did you get?
 
 As the figure below shows, the achieved occupancy is: 17.32%.
+
 
 ![The running results using Nvidia Nsight with 1024 input length](./images/E1_3_2.png)
 
@@ -90,6 +92,7 @@ In the program, we define the number of thread per block as: 16 * 16 = 256. The 
 ##### 2. Profile your program with Nvidia Nsight. What Achieved Occupancy did you get?
 
 As the figure below shows, the achieved occupancy is: 42.80%.
+
 ![The running results using Nvidia Nsight with 128 * 128 ](./images/E2_4_2.png)
 
 #### 5. For a matrix A of (511x1023) and B of (1023x4094):
@@ -105,11 +108,13 @@ The number of thread per block is defined as: 32 * 32 = 1024. The number of bloc
 ##### 3. Profile your program with Nvidia Nsight. What Achieved Occupancy do you get now?
 
 As the figure below shows, the achieved occupancy is: 98.01%.
+
 ![The running results using Nvidia Nsight with 511 * 4094 ](./images/E2_5_3.png)
 
 #### 6. Further increase the size of matrix A and B, plot a stacked bar chart showing the breakdown of time including (1) data copy from host to device (2) the CUDA kernel (3) data copy from device to host. For this, you will need to add simple CPU timers to your code regions. Explain what you observe.
 
 The time that data copy from host to device and data copy from device to host is sounding linearly rise as the input size rises. In small input size, the data movement time takes up most of the time, but as execution time in the kernel increases dramatically, it gradually takes up a major portion of the time. This is due to the fact that we are applying a thread to calculate the sum of the products of rows and columns, and as the number of rows and columns increases the number of floating-point operations performed increases, so the execution time increases dramatically and dominates.
+
 | input size      |   ((256 x 256) (256 x 256)) |   (512 x 512) (512 x 512) |   (1024 x 1024) (1024 x 1024)  |   (1536 x 1536) (1536 x 1536)  |   (2048 x 2048) (2048 x 2048) |   (2560 x 2560) (2560 x 2560) |
 |-----------------|-----------------------------|---------------------------|--------------------------------|--------------------------------|-------------------------------|-------------------------------|
 | h2d_time        |                    0.001912 |                  0.001346 |                       0.00411  |                       0.010207 |                      0.016338 |                      0.0272   |
@@ -121,6 +126,8 @@ The time that data copy from host to device and data copy from device to host is
 #### 7. Now, change DataType from double to float, re-plot the a stacked bar chart showing the time breakdown. Explain what you observe. 
 
 The overall time shares and trends are similar to those using the doule data type, but the time spent is less than using the doule data type.
+
+
 | input size      |   ((256 x 256) (256 x 256)) |   (512 x 512) (512 x 512) |   (1024 x 1024) (1024 x 1024)  |   (1536 x 1536) (1536 x 1536)  |   (2048 x 2048) (2048 x 2048) |   (2560 x 2560) (2560 x 2560) |
 |-----------------|-----------------------------|---------------------------|--------------------------------|--------------------------------|-------------------------------|-------------------------------|
 | h2d_time        |                    0.000491 |                  0.001489 |                       0.004224 |                       0.00821  |                      0.018303 |                      0.026075 |
