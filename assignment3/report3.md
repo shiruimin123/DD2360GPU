@@ -61,8 +61,33 @@ WRN   This kernel grid is too small to fill the available resources on this devi
 WRN   The grid for this launch is configured to execute only 1 blocks, which is less than the GPU's 40 multiprocessors. This can underutilize some multiprocessors. If you do not intend to execute this kernel      concurrently with other workloads, consider reducing the block size to have at least one block per multiprocessor or increase the size of the grid to fully utilize the available hardware resources. See the Hardware Model (https://docs.nvidia.com/nsight-compute/ProfilingGuide/index.html#metrics-hw-model) description for more details on launch configurations.
 ## Exercise 2
 ### 1. Describe the environment you used, what changes you made to the Makefile, and how you ran the simulation.
+
+ The computing capability of Google Colab is "7.5". We specify the target architecture in the Makefile as ```-arch sm_75``` to support the code running on GPUs with sm_75 computing capabilities on Makefile.
+
+ Firstly we download it to colab using
+
+ ```!./bin/sputniPIC.out inputfiles/GEM_2D.inp```
+
+ Then, ```make``` is used to compile it and ```mkdir data``` is used to create the output file.
+
+ Finally, execute using the following code:
+
+  ```!./bin/sputniPIC.out inputfiles/GEM_2D.inp```
+
 ### 2. Describe your design of the GPU implementation of mover_PC() briefly. 
+
+At first, ```cudaMalloc()``` dunction is used to allocate global memory space into the variables--```part, field, grd, param```.
+
+We use 1024 threads per block and $(part->nop + Db - 1) / Db$ blocks on GPU to move each particle with new fields and this process executing ```part->n_sub_cycles``` times.
+
+Then, we copy the results from device to host and release the allocation.
+
 ### 3. Compare the output of both CPU and GPU implementation to guarantee that your GPU implementations produce correct answers.
+
+
 ### 4. Compare the execution time of your GPU implementation with its CPU version.
 
-
+CPU version:
+ Tot. Simulation Time (s) = 61.9859
+   Mover Time / Cycle   (s) = 3.43598
+   Interp. Time / Cycle (s) = 2.47185

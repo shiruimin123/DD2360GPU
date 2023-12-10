@@ -73,11 +73,13 @@ void particle_deallocate(struct particles* part)
 }
 
 /** particle mover */
-int mover_PC(struct particles* part, struct EMfield* field, struct grid* grd, struct parameters* param)
+__global__ void mover_PC(struct particles* devicepart, struct EMfield* devicefield, struct grid* devicegrd, struct parameters* deviceparam)
 {
-    // print species and subcycling
-    std::cout << "***  MOVER with SUBCYCLYING "<< param->n_sub_cycles << " - species " << part->species_ID << " ***" << std::endl;
- 
+    
+    int i = blockDim.x * blockIdx.x + threadIdx.x; // thread ID
+    
+    if (i >= devicePart->nop) 
+        return;
     // auxiliary variables
     FPpart dt_sub_cycling = (FPpart) param->dt/((double) part->n_sub_cycles);
     FPpart dto2 = .5*dt_sub_cycling, qomdt2 = part->qom*dto2/param->c;
@@ -93,11 +95,11 @@ int mover_PC(struct particles* part, struct EMfield* field, struct grid* grd, st
     
     // intermediate particle position and velocity
     FPpart xptilde, yptilde, zptilde, uptilde, vptilde, wptilde;
-    
+
     // start subcycling
-    for (int i_sub=0; i_sub <  part->n_sub_cycles; i_sub++){
+
         // move each particle with new fields
-        for (int i=0; i <  part->nop; i++){
+
             xptilde = part->x[i];
             yptilde = part->y[i];
             zptilde = part->z[i];
@@ -222,17 +224,58 @@ int mover_PC(struct particles* part, struct EMfield* field, struct grid* grd, st
                     part->w[i] = -part->w[i];
                     part->z[i] = -part->z[i];
                 }
-            }
-                                                                        
-            
-            
-        }  // end of subcycling
-    } // end of one particle
-                                                                        
-    return(0); // exit succcesfully
+            }            
+          // end of subcycling
+     // end of one particle
 } // end of the mover
 
+int mover_PC_gpu(struct particles* part, struct EMfield* field, struct grid* grd, struct parameters* param)
+{
+    // print species and subcycling
+    std::cout << "***  MOVER with SUBCYCLYING "<< param->n_sub_cycles << " - species " << part->species_ID << " ***" << std::endl;
+ 
 
+    particles* devicepart;
+    EMfield* devicefield;
+    grid* devicegrd;
+    parameters* deviceparam;
+
+
+    cudaMalloc(&devicepart, sizeof(particles));
+    cudaMalloc(&devicefield, sizeof(EMfield));
+    cudaMalloc(&devicegrd, sizeof(grid));
+    cudaMalloc(&deviceparam, sizeof(parameters));
+
+
+    cudaMemcpy(devicepart, part, sizeof(particles), cudaMemcpyHostToDevice);
+    cudaMemcpy(devicefield, field, sizeof(EMfield), cudaMemcpyHostToDevice);
+    cudaMemcpy(devicegrd, grd, sizeof(grid), cudaMemcpyHostToDevice);
+    cudaMemcpy(deviceparam, param, sizeof(parameters), cudaMemcpyHostToDevice);
+    
+        // start subcycling
+    for (int i_sub=0; i_sub <  part->n_sub_cycles; i_sub++){
+        // move each particle with new fields
+        int Db = 1024;
+        int Dg = (part->nop + Db - 1) / Db;
+        // Call the CUDA kernel function
+        mover_PC<<<Dg, Db>>>(devicePart, deviceField,deviceGrd,deviceParam);    
+    }
+    
+    // Copy memory back from Device to Host 
+    cudaMemcpy(part, devicePart, sizeof(particles), cudaMemcpyDeviceToHost);
+    cudaMemcpy(field, deviceField, sizeof(EMfield), cudaMemcpyDeviceToHost);
+    cudaMemcpy(grd, deviceGrd, sizeof(grid), cudaMemcpyDeviceToHost);
+    cudaMemcpy(param, deviceParam, sizeof(parameters), cudaMemcpyDeviceToHost);
+    
+    // Free device memory
+    cudaFree(devicePart);
+    cudaFree(deviceField);
+    cudaFree(deviceGrd);
+    cudaFree(deviceParam);
+    
+    return 0; // exit successcully
+
+} // end of the mover
 
 /** Interpolation Particle --> Grid: This is for species */
 void interpP2G(struct particles* part, struct interpDensSpecies* ids, struct grid* grd)
@@ -389,3 +432,6 @@ void interpP2G(struct particles* part, struct interpDensSpecies* ids, struct gri
     }
    
 }
+
+
+/** particle mover */
