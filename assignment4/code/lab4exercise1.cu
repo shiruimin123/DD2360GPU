@@ -111,7 +111,7 @@ printf("GPU Execution Time: %f seconds\n", end - start);
 //@@ Insert code below to compare the output with the reference
   for (int i = 0; i < inputLength; i++) {
     if (fabs(hostOutput[i] - resultRef[i]) > 1e-5) {
-      printf(stderr, "Mismatch at index %d: %f != %f\n", i, hostOutput[i], resultRef[i]);
+      fprintf(stderr, "Mismatch at index %d: %f != %f\n", i, hostOutput[i], resultRef[i]);
       break;
     }
   }
