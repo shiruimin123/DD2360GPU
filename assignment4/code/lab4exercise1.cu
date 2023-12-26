@@ -54,9 +54,9 @@ int main(int argc, char **argv) {
 
 
 // Allocate Host memory for input and output
-  hostInput1 = (DataType*)malloc(inputLength * sizeof(DataType));
-  hostInput2 = (DataType*)malloc(inputLength * sizeof(DataType));
-  hostOutput = (DataType*)malloc(inputLength * sizeof(DataType));
+  cudaHostAlloc(&hostInput1, inputLength * sizeof(DataType));
+  cudaHostAlloc(&hostInput2, inputLength * sizeof(DataType));
+  cudaHostAlloc(&hostOutput, inputLength * sizeof(DataType));
   resultRef  = (DataType*)malloc(inputLength * sizeof(DataType));
   double cpu_start = cpuSecond();
 //@@ Insert code below to initialize hostInput1 and hostInput2 to random numbers, and create reference result in CPU
@@ -106,9 +106,9 @@ printf("GPU Execution Time: %f seconds\n", end - start);
   cudaFree(deviceOutput);
 
 //@@ Free the CPU memory here
-  free(hostInput1);
-  free(hostInput2);
-  free(hostOutput);
+  cudaFreeHost(hostInput1);
+  cudaFreeHost(hostInput2);
+  cudaFreeHost(hostOutput);
   free(resultRef);
 
   return 0;
