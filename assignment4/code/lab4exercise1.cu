@@ -73,7 +73,7 @@ int main(int argc, char **argv) {
   cudaMalloc(&deviceOutput, inputLength * sizeof(DataType));
 //@@ Initialize the 1D grid and block dimensions here
   int Db = 1024;
-  int Dg = (inputLength + Db - 1) / Db;
+  int Dg = (S_seg + Db - 1) / Db;
 
 //@@ Insert code to below to Copy memory to the GPU here
 double start = cpuSecond();
@@ -109,7 +109,7 @@ double start = cpuSecond();
   cudaMemcpyAsync(&hostOutput[offset], &deviceOutput[offset], streamBytes, cudaMemcpyDeviceToHost,stream[i]);
 }
 
-
+cudaDeviceSynchronize();
 double end = cpuSecond();
 printf("GPU Execution Time: %f seconds\n", end - start);
 //  double d2h_end = cpuSecond();
