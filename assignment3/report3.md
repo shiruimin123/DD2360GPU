@@ -94,6 +94,6 @@ CPU version:
    Interp. Time / Cycle (s) = 2.47185
 
 GPU version:
-   Tot. Simulation Time (s) = 30.5093
-   Mover Time / Cycle   (s) = 0.265047
-   Interp. Time / Cycle (s) = 2.49647
+   Tot. Simulation Time (s) = 28.7788
+   Mover Time / Cycle   (s) = 0.0279379
+   Interp. Time / Cycle (s) = 2.56059
