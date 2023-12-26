@@ -59,6 +59,7 @@ int main(int argc, char **argv) {
 
 //@@ Insert code to below to Copy memory to the GPU here
   double h2d_start = cpuSecond();
+  double start = cpuSecond();
   cudaMemcpy(deviceInput1, hostInput1, inputLength * sizeof(DataType), cudaMemcpyHostToDevice);
   cudaMemcpy(deviceInput2, hostInput2, inputLength * sizeof(DataType), cudaMemcpyHostToDevice);
   double h2d_end = cpuSecond();
@@ -80,6 +81,8 @@ int main(int argc, char **argv) {
   cudaMemcpy(hostOutput, deviceOutput, inputLength * sizeof(DataType), cudaMemcpyDeviceToHost);
   double d2h_end = cpuSecond();
   printf("Data copy from device to host: %f seconds\n", d2h_end - d2h_start);
+  double end = cpuSecond();
+  printf("GPU Execution: %f seconds\n", end - start);
 //@@ Insert code below to compare the output with the reference
   for (int i = 0; i < inputLength; i++) {
     if (fabs(hostOutput[i] - resultRef[i]) > 1e-5) {
