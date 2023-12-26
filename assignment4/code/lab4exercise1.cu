@@ -95,6 +95,7 @@ double start = cpuSecond();
   {
     int offset = i*S_seg; 
     vecAdd<<<Dg, Db,0,stream[i]>>>(deviceInput1, deviceInput2, deviceOutput, inputLength , offset);
+    cudaDeviceSynchronize();
   }
  // cudaDeviceSynchronize();
   //double gpu_end = cpuSecond();
@@ -108,7 +109,7 @@ for (int i = 0; i < nStreams; ++i)
   cudaMemcpyAsync(&hostOutput[offset], &deviceOutput[offset], streamBytes, cudaMemcpyDeviceToHost,stream[i]);
 }
 
-cudaDeviceSynchronize();
+
 double end = cpuSecond();
 printf("GPU Execution Time: %f seconds\n", end - start);
 //  double d2h_end = cpuSecond();
