@@ -77,36 +77,13 @@ int main(int argc, char **argv) {
 
 //@@ Insert code to below to Copy memory to the GPU here
 double start = cpuSecond();
-  for (int i = 0; i < nStreams; ++i)  
+  for (int i = 0; i < nStreams; i++)  
   {
     int offset = i*S_seg;
-  //double h2d_start = cpuSecond();
     cudaMemcpyAsync(&deviceInput1[offset], &hostInput1[offset], streamBytes, cudaMemcpyHostToDevice,stream[i]);
-    cudaMemcpyAsync(&deviceInput2[offset], &hostInput2[offset], streamBytes, cudaMemcpyHostToDevice,stream[i]);
-  //}
-  //double h2d_end = cpuSecond();
-  //printf("Data copy from host to device: %f seconds\n", h2d_end - h2d_start);
-
-
-
-//@@ Launch the GPU Kernel here
- // double gpu_start = cpuSecond();
- // for (int i = 0; i < nStreams; ++i) 
- // {
- //   int offset = i*S_seg; 
+    cudaMemcpyAsync(&deviceInput2[offset], &hostInput2[offset], streamBytes, cudaMemcpyHostToDevice,stream[i]); 
     vecAdd<<<Dg, Db,0,stream[i]>>>(deviceInput1, deviceInput2, deviceOutput, inputLength , offset);
-   // cudaDeviceSynchronize();
- // }
- // cudaDeviceSynchronize();
-  //double gpu_end = cpuSecond();
- // printf("Kernel Execution Time: %f seconds\n", gpu_end - gpu_start);
-
-//@@ Copy the GPU memory back to the CPU here
-//  double d2h_start = cpuSecond();
-//for (int i = 0; i < nStreams; ++i)  
-//{
- // int offset = i*S_seg;
-  cudaMemcpyAsync(&hostOutput[offset], &deviceOutput[offset], streamBytes, cudaMemcpyDeviceToHost,stream[i]);
+    cudaMemcpyAsync(&hostOutput[offset], &deviceOutput[offset], streamBytes, cudaMemcpyDeviceToHost,stream[i]);
 }
 
 cudaDeviceSynchronize();
