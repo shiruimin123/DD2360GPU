@@ -95,7 +95,7 @@ double start = cpuSecond();
  // {
  //   int offset = i*S_seg; 
     vecAdd<<<Dg, Db,0,stream[i]>>>(deviceInput1, deviceInput2, deviceOutput, inputLength , offset);
-    cudaDeviceSynchronize();
+   // cudaDeviceSynchronize();
  // }
  // cudaDeviceSynchronize();
   //double gpu_end = cpuSecond();
@@ -121,7 +121,8 @@ printf("GPU Execution Time: %f seconds\n", end - start);
       break;
     }
   }
-
+  for (int i = 0; i < nStreams; ++i)
+    cudaStreamDestroy( stream[i] );
 //@@ Free the GPU memory here
   cudaFree(deviceInput1);
   cudaFree(deviceInput2);
