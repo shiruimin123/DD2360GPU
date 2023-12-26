@@ -6,8 +6,8 @@
 #define nStreams 4
 // GPU kernel for vector addition
 //@@ Insert code to implement vector addition here
-__global__ void vecAdd(DataType *in1, DataType *in2, DataType *out, int len) {
-  int i = blockIdx.x * blockDim.x + threadIdx.x;
+__global__ void vecAdd(DataType *in1, DataType *in2, DataType *out, int len,int offset) {
+  int i = offset + blockIdx.x * blockDim.x + threadIdx.x;
 
   if (i < len) {
     out[i] = in1[i] + in2[i];
@@ -77,7 +77,8 @@ int main(int argc, char **argv) {
 
 //@@ Insert code to below to Copy memory to the GPU here
 double start = cpuSecond();
-  for (int i = 0; i < nStreams; ++i)  {
+  for (int i = 0; i < nStreams; ++i)  
+  {
     int offset = i*S_seg;
   //double h2d_start = cpuSecond();
     cudaMemcpyAsync(&deviceInput1[offset], &hostInput1[offset], streamBytes, cudaMemcpyHostToDevice,stream[i]);
@@ -90,15 +91,19 @@ double start = cpuSecond();
 
 //@@ Launch the GPU Kernel here
  // double gpu_start = cpuSecond();
-  for (int i = 0; i < nStreams; ++i)  
-    vecAdd<<<Dg, Db,0,stream[i]>>>(deviceInput1, deviceInput2, deviceOutput, inputLength);
+  for (int i = 0; i < nStreams; ++i) 
+  {
+    int offset = i*S_seg; 
+    vecAdd<<<Dg, Db,0,stream[i]>>>(deviceInput1, deviceInput2, deviceOutput, inputLength , offset);
+  }
  // cudaDeviceSynchronize();
   //double gpu_end = cpuSecond();
  // printf("Kernel Execution Time: %f seconds\n", gpu_end - gpu_start);
 
 //@@ Copy the GPU memory back to the CPU here
 //  double d2h_start = cpuSecond();
-for (int i = 0; i < nStreams; ++i)  {
+for (int i = 0; i < nStreams; ++i)  
+{
   int offset = i*S_seg;
   cudaMemcpyAsync(&hostOutput[offset], &deviceOutput[offset], streamBytes, cudaMemcpyDeviceToHost,stream[i]);
 }
