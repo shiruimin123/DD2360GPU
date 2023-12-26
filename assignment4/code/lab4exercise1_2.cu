@@ -93,7 +93,7 @@ double start = cpuSecond();
  // double gpu_start = cpuSecond();
   for (int i = 0; i < nStreams; ++i) 
   {
- //   int offset = i*S_seg; 
+    int offset = i*S_seg; 
     vecAdd<<<Dg, Db,0,stream[i]>>>(deviceInput1, deviceInput2, deviceOutput, inputLength , offset);
     cudaDeviceSynchronize();
   }
@@ -105,7 +105,7 @@ double start = cpuSecond();
 //  double d2h_start = cpuSecond();
 for (int i = 0; i < nStreams; ++i)  
 {
- // int offset = i*S_seg;
+  int offset = i*S_seg;
   cudaMemcpyAsync(&hostOutput[offset], &deviceOutput[offset], streamBytes, cudaMemcpyDeviceToHost,stream[i]);
 }
 
