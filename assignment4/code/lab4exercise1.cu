@@ -58,14 +58,15 @@ int main(int argc, char **argv) {
   hostInput2 = (DataType*)malloc(inputLength * sizeof(DataType));
   hostOutput = (DataType*)malloc(inputLength * sizeof(DataType));
   resultRef  = (DataType*)malloc(inputLength * sizeof(DataType));
-
+  double cpu_start = cpuSecond();
 //@@ Insert code below to initialize hostInput1 and hostInput2 to random numbers, and create reference result in CPU
   for (int i = 0; i < inputLength; i++) {
     hostInput1[i] = rand()/(DataType)RAND_MAX;
     hostInput2[i] = rand()/(DataType)RAND_MAX;
     resultRef[i]  = hostInput1[i] + hostInput2[i];
   }
-
+  double cpu_end = cpuSecond();
+  printf("CPU Execution Time: %f seconds\n", cpu_end - cpu_start);
 //@@ Insert code below to allocate GPU memory here
   cudaMalloc(&deviceInput1, inputLength * sizeof(DataType));
   cudaMalloc(&deviceInput2, inputLength * sizeof(DataType));
@@ -77,7 +78,7 @@ int main(int argc, char **argv) {
 //@@ Insert code to below to Copy memory to the GPU here
 double start = cpuSecond();
   for (int i = 0; i < nStreams; ++i)  {
-    int offset = i*streamSize;
+    int offset = i*S_seg;
   //double h2d_start = cpuSecond();
     cudaMemcpyAsync(&deviceInput1[offset], &hostInput1[offset], streamBytes, cudaMemcpyHostToDevice,stream[i]);
     cudaMemcpyAsync(&deviceInput2[offset], &hostInput2[offset], streamBytes, cudaMemcpyHostToDevice,stream[i]);
@@ -98,7 +99,7 @@ double start = cpuSecond();
 //@@ Copy the GPU memory back to the CPU here
 //  double d2h_start = cpuSecond();
 for (int i = 0; i < nStreams; ++i)  {
-  int offset = i*streamSize;
+  int offset = i*S_seg;
   cudaMemcpyAsync(&hostOutput[offset], &deviceOutput[offset], streamBytes, cudaMemcpyDeviceToHost,stream[i]);
 }
 
