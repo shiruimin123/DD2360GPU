@@ -58,29 +58,29 @@ int main(int argc, char **argv) {
   cudaMalloc((void**)&deviceOutput, inputLength * sizeof(DataType));
 
 //@@ Insert code to below to Copy memory to the GPU here
-  double h2d_start = cpuSecond();
+  //double h2d_start = cpuSecond();
   double start = cpuSecond();
   cudaMemcpy(deviceInput1, hostInput1, inputLength * sizeof(DataType), cudaMemcpyHostToDevice);
   cudaMemcpy(deviceInput2, hostInput2, inputLength * sizeof(DataType), cudaMemcpyHostToDevice);
-  double h2d_end = cpuSecond();
-  printf("Data copy from host to device: %f seconds\n", h2d_end - h2d_start);
+  //double h2d_end = cpuSecond();
+  //printf("Data copy from host to device: %f seconds\n", h2d_end - h2d_start);
 
 //@@ Initialize the 1D grid and block dimensions here
   int Db = 1024;
   int Dg = (inputLength + Db - 1) / Db;
 
 //@@ Launch the GPU Kernel here
-  double gpu_start = cpuSecond();
+  //double gpu_start = cpuSecond();
   vecAdd<<<Dg, Db>>>(deviceInput1, deviceInput2, deviceOutput, inputLength);
   cudaDeviceSynchronize();
-  double gpu_end = cpuSecond();
-  printf("Kernel Execution Time: %f seconds\n", gpu_end - gpu_start);
+  //double gpu_end = cpuSecond();
+ // printf("Kernel Execution Time: %f seconds\n", gpu_end - gpu_start);
 
 //@@ Copy the GPU memory back to the CPU here
-  double d2h_start = cpuSecond();
+  //double d2h_start = cpuSecond();
   cudaMemcpy(hostOutput, deviceOutput, inputLength * sizeof(DataType), cudaMemcpyDeviceToHost);
-  double d2h_end = cpuSecond();
-  printf("Data copy from device to host: %f seconds\n", d2h_end - d2h_start);
+  //double d2h_end = cpuSecond();
+  //printf("Data copy from device to host: %f seconds\n", d2h_end - d2h_start);
   double end = cpuSecond();
   printf("GPU Execution: %f seconds\n", end - start);
 //@@ Insert code below to compare the output with the reference
