@@ -8,8 +8,16 @@
 #### 3. Now assume X=600 and Y=799, how many warps will have control divergence? Please explain your answers.
 
 ### Exercise 2 - CUDA Streams
-#### 1. Divide an input vector into multiple segments of a given size (S_seg)
-#### 2. Create 4 CUDA streams to copy asynchronously from host to GPU memory, perform vector addition on GPU, and copy back the results from GPU memory to host memory
+#### 1. Compared to the non-streamed vector addition, what performance gain do you get? Present in a plot ( you may include comparison at different vector length)
+
+
+#### 2. Use nvprof to collect traces and the NVIDIA Visual Profiler (nvvp) to visualize the overlap of communication and computation. To use nvvp, you can check Tutorial: NVVP - Visualize nvprof Traces
+
+We use command```nvprof --output-profile lab4exercise1.nvvp -f ./lab4exercise1 262144``` to trace the performance and use nvvp to check the visualized file.
+
+The vector size is set to 262144. From the figure we can see that the overlap of copying data from host to device and copying data from device to host, launching the kernel for computing.
+
+![The overlap of communication and computation](./images/ex2q2.png)
 #### 3. What is the impact of segment size on performance? Present in a plot ( you may choose a large vector and compare 4-8 different segment sizes)
 
 ### Exercise 3 - Heat Equation with using NVIDIA libraries
