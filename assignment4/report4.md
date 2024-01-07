@@ -26,8 +26,9 @@ We use command```nvprof --output-profile lab4exercise1.nvvp -f ./lab4exercise1 2
 The vector size is set to 262144. From the figure we can see that the overlap of copying data from host to device and copying data from device to host, launching the kernel for computing.
 
 ![The overlap of communication and computation](./images/ex2q2.png)
+![The overlap of communication and computation](./images/ex2q1.png)
 #### 3. What is the impact of segment size on performance? Present in a plot ( you may choose a large vector and compare 4-8 different segment sizes)
-
+![The overlap of communication and computation](./images/ex2q3.png)
 ### Exercise 3 - Heat Equation with using NVIDIA libraries
 #### 1. Run the program with different dimX values. For each one, approximate the FLOPS (floating-point operation per second) achieved in computing the SMPV (sparse matrix multiplication). Report FLOPS at different input sizes in a FLOPS. What do you see compared to the peak throughput you report in Lab2?
 We noticed that there are three operations in each iteration: cusparseSpMV, cublasDaxpy and cublasDnrm2 operations. These operations all contain a known number of floating point operations, so we add a FLOPS counter and timer to the code and calculate each second. Floating-point operations: FLOPS = Total Floating-Point Operations / Time.
