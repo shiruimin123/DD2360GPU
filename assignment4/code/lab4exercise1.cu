@@ -38,9 +38,10 @@ int main(int argc, char **argv) {
 //@@ Insert code below to read in inputLength from args
   if (argc > 1) {
     inputLength = atoi(argv[1]);                           //ASCII to integer
-    nStreams = atoi(argv[1]);    
+    nStreams = atoi(argv[2]);    
   }
   printf("The input length is %d\n", inputLength);
+printf("The input length is %d\n", nStreams);
   
 //----------
 
