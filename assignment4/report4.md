@@ -1,3 +1,4 @@
+**contribute:** Bowen Tian did exercise 3, Ruimin Shi did exercise 1, 2.
 #  Assignment IV: Advanced CUDA
 
 ### Exercise 1 - Thread Scheduling and Execution Efficiency 
