@@ -40,6 +40,7 @@ In the cublasDaxpy operation, there are 2*dimX floating point operations per ite
 In the cublasDnrm2 operation, there are 2*dimX floating point operations per iteration.
 
 We fixed nstep and continuously increased the value of dimX, and obtained the changing pattern of floating-point operations per second as shown in the figure below:
+
 ![MFLOPS](./images/ex3q1.png)
 We noticed that although there are certain fluctuations, the amount of floating point operations is basically linearly related to the increase in input data. We were not able to observe peak throughput in this experiment. According to the information, this may be because the iteration of the algorithm limits its operations to short bursts of activity.
 
