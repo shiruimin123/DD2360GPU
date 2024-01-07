@@ -46,10 +46,12 @@ We noticed that although there are certain fluctuations, the amount of floating 
 
 #### 2. Run the program with dimX=128 and vary nsteps from 100 to 10000. Plot the relative error of the approximation at different nstep. What do you observe?
 In the experiment, we fixed dimX at 128 and continued to increase the number of iterations. From the figure, we can find that the relative error decreases exponentially as the number of iterations increases.
+
 ![RelativeError](./images/ex3q2.png)
 #### 3. Compare the performance with and without the prefetching in Unified Memory. How is the performance impact? 
 We design an input as the flag bit FLAG in the code and perform an AND operation with the if condition of prefetch, so that we can control the prefetch operation without modifying the code.
 
 In the experiment, we tested the floating-point number operation volume and the execution time of the iteration at the same time. We noticed that the floating-point number operation volume when using prefetching operation was improved to a certain extent compared with the floating-point number operation volume when not using prefetching operation.
 ![MFLOPS_2](./images/ex3q3.png)
+
 When observing the execution time of iterations, we found that using prefetch operations seems to reduce the execution time of iterations. At the same time, the time consumption of prefetch operations is several orders of magnitude less than the execution time. However, it is worth mentioning that when observing the execution time of the two, we found that there is very large fluctuation in the execution time, and the observation results about the execution time need further verification.
