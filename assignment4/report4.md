@@ -13,7 +13,7 @@ In the X-axis, $600/16=37.5$ blocks, which means in the last column of the block
 
 #### 3. Now assume X=600 and Y=799, how many warps will have control divergence? Please explain your answers.
 
-We divided the control divergence into three conditions: C1, C2, C3.In the X-axis, the same as in question 2, each of these kinds of blocks has 128 wraps  with control divergence. In the y-axis,  $799/16=49$ blocks, so the total wraps with C1 is $49* 8=392$; $799 mod 16= 1$, which means 15 rows of threads and the last one row of threads execute different pathes, so one wrap will have control divergence. The total number of wraps with C2 is $37* 1 = 37$. The number of C3 waps is $8$ wraps. Th etotal number is $392+8+37=437$.
+We divided the control divergence into three conditions: C1, C2, C3.In the X-axis, the same as in question 2, each of these kinds of blocks has 128 wraps  with control divergence. In the y-axis,  $799/16=49$ blocks, so the total wraps with C1 is $49* 8=392$; $799 % 16= 1$, which means 15 rows of threads and the last one row of threads execute different pathes, so one wrap will have control divergence. The total number of wraps with C2 is $37* 1 = 37$. The number of C3 waps is $8$ wraps. Th etotal number is $392+8+37=437$.
 
 ### Exercise 2 - CUDA Streams
 #### 1. Compared to the non-streamed vector addition, what performance gain do you get? Present in a plot ( you may include comparison at different vector length)
