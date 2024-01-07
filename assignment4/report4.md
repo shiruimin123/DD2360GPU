@@ -3,9 +3,17 @@
 ### Exercise 1 - Thread Scheduling and Execution Efficiency 
 #### 1. Assume X=800 and Y=600. Assume that we decided to use a grid of 16X16 blocks. That is, each block is organized as a 2D 16X16 array of threads. How many warps will be generated during the execution of the kernel? How many warps will have control divergence? Please explain your answers.
 
+The number of wraps: each block has a $16*16=256$ array of threads and each warp includes 32 threads. So each block has $16*16/32 = 8$ wraps. According to the $800*600=480000$ size of this problem, we have $480000/256=1875$ blocks. Totally, we have $1875*8 = 15000$ warps.
+
+Control divergence: In each block, two rows of threads are in the same wraps. In the X-axis, $800/16=50$ blocks, so all of the x-axis threads will have the same control path; In the y-axis, $600/16=37.5$ blocks, which means in the last block, 8 rows have execute one path and the other 8 rows execute one path. But every two rows are in the same wraps, there is also no control divergence. 0 wrap in this condition has control divergence. 
+
 #### 2. Now assume X=600 and Y=800 instead, how many warps will have control divergence? Please explain your answers.
 
+In the X-axis, $600/16=37.5$ blocks, which means in the last column of the blocks, 8 columns of threads and the other 8 columns of threads execute differently. So each of these kinds of blocks has 128 wraps  with control divergence. In the y-axis, $800/16=50$ blocks, so the total warps with control divergence is $8*50=400$.
+
 #### 3. Now assume X=600 and Y=799, how many warps will have control divergence? Please explain your answers.
+
+We divided the control divergence into three conditions: C1, C2, C3.In the X-axis, the same as in question 2, each of these kinds of blocks has 128 wraps  with control divergence. In the y-axis,  $799/16=49$ blocks, so the total wraps with C1 is $49*8=392$; $799mod16=1 $ , which means 15 rows of threads and the last one row of threads execute different pathes, so one wrap will have control divergence. The total number of wraps with C2 is $37*1 = 37$. The number of C3 waps is $8$ wraps. Th etotal number is $392+8+37=427$.
 
 ### Exercise 2 - CUDA Streams
 #### 1. Compared to the non-streamed vector addition, what performance gain do you get? Present in a plot ( you may include comparison at different vector length)
