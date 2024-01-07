@@ -3,7 +3,7 @@
 #include <sys/time.h>
 
 #define DataType double
-#define nStreams 4
+//#define nStreams 4
 // GPU kernel for vector addition
 //@@ Insert code to implement vector addition here
 __global__ void vecAdd(DataType *in1, DataType *in2, DataType *out, int len,int offset) {
@@ -26,7 +26,7 @@ int main(int argc, char **argv) {
 
 
   int inputLength;
-  
+  int nStreams;
   DataType *hostInput1;
   DataType *hostInput2;
   DataType *hostOutput;
@@ -38,6 +38,7 @@ int main(int argc, char **argv) {
 //@@ Insert code below to read in inputLength from args
   if (argc > 1) {
     inputLength = atoi(argv[1]);                           //ASCII to integer
+    nStreams = atoi(argv[1]);    
   }
   printf("The input length is %d\n", inputLength);
   
